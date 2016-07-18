@@ -1,0 +1,21 @@
+{
+  "name": "homebridge-fake-rgb",
+  "version": "0.0.1",
+  "description": "Fake RGB Bulb plugin for homebridge: https://github.com/nfarina/homebridge",
+  "license": "MIT",
+  "keywords": [
+    "homebridge-plugin"
+  ],
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.2.0"
+  },
+  "author": {
+    "name": "Edgar Toll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/edjopato/homebridge-fake-rgb.git"
+  },
+  "dependencies": {}
+}
