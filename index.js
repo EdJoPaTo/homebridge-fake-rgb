@@ -1,3 +1,4 @@
+var colorsys = require( 'colorsys' );
 var Service, Characteristic;
 
 module.exports = function( homebridge ) {
@@ -18,44 +19,12 @@ function RgbAccessory( log, config ) {
   this.log( "Initialized '" + this.name + "'" );
 }
 
-function rgbFromHsv( h, s, v ) {
-  var h_ = h / 60;
-  var c = v * s;
-  var x = c * ( 1 - Math.abs( ( h_ % 2 ) - 1 ) );
-
-  var r = v - c;
-  var g = v - c;
-  var b = v - c;
-
-  if ( h_ >= 5 ) {
-    r += c;
-    b += x;
-  } else if ( h_ >= 4 ) {
-    r += x;
-    b += c;
-  } else if ( h_ >= 3 ) {
-    g += x;
-    b += c;
-  } else if ( h_ >= 2 ) {
-    g += c;
-    b += x;
-  } else if ( h_ >= 1 ) {
-    r += x;
-    g += c;
-  } else {
-    r += c;
-    g += x;
-  }
-
-  return {
-    r: r,
-    g: g,
-    b: b
-  };
-}
-
 RgbAccessory.prototype.setColor = function() {
-  var color = rgbFromHsv( this.hue, this.saturation / 100, this.brightness / 100 );
+  var color = colorsys.hsv_to_rgb( {
+    h: this.hue,
+    s: this.saturation,
+    v: this.brightness
+  } );
 
   if ( !this.power ) {
     color.r = 0;
@@ -63,7 +32,11 @@ RgbAccessory.prototype.setColor = function() {
     color.b = 0;
   }
 
-  this.log( "set color to", Math.round( color.r * 255 ), Math.round( color.g * 255 ), Math.round( color.b * 255 ) );
+  color.r = Math.round( color.r * 255 );
+  color.g = Math.round( color.g * 255 );
+  color.b = Math.round( color.b * 255 );
+
+  this.log( "set color to", color.r, color.g, color.b );
 };
 
 RgbAccessory.prototype.getServices = function() {
