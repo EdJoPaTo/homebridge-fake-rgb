@@ -1,6 +1,6 @@
 {
   "name": "homebridge-fake-rgb",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Fake RGB Bulb plugin for homebridge: https://github.com/nfarina/homebridge",
   "license": "MIT",
   "keywords": [

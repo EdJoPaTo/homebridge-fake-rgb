@@ -32,10 +32,6 @@ RgbAccessory.prototype.setColor = function() {
     color.b = 0;
   }
 
-  color.r = Math.round( color.r * 255 );
-  color.g = Math.round( color.g * 255 );
-  color.b = Math.round( color.b * 255 );
-
   this.log( "set color to", color.r, color.g, color.b );
 };
 
